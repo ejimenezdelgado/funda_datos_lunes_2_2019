@@ -41,7 +41,7 @@ CREATE TABLE profesores
 
 CREATE TABLE programa (
   id serial NOT NULL PRIMARY KEY,
-  fecha timestamp without time zone,
+  fecha TIMESTAMP WITHOUT TIME ZONE,
   estado CHAR(1) DEFAULT 'C'
 );
 ALTER TABLE programa ADD CONSTRAINT chk_estado CHECK (estado in('A','C'));

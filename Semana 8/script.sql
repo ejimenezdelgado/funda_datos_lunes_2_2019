@@ -25,7 +25,10 @@ ALTER TABLE estudiante
   ADD CONSTRAINT pk_cedula_estudiante PRIMARY KEY (cedula); 
 
 ALTER TABLE estudiante 
-ADD CONSTRAINT fk_cedula FOREIGN KEY (persona_id) REFERENCES persona(id);
+  ALTER COLUMN persona_id TYPE CHAR(11);
+  
+ALTER TABLE estudiante 
+ADD CONSTRAINT fk_cedula FOREIGN KEY (persona_id) REFERENCES persona(cedula);
 
 ALTER TABLE estudiante 
   ADD CONSTRAINT unique_carnet UNIQUE (carnet);
