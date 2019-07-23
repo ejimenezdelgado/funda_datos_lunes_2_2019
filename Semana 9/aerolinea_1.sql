@@ -2,29 +2,33 @@
 
 CREATE TABLE piloto 
 ( 
+  id 	      SERIAL NOT NULL,
   licencia    VARCHAR(20) NOT NULL, 
   nombre      VARCHAR(100) NOT NULL, 
   horas_vuelo NUMERIC(10) NOT NULL 
 ); 
 
 CREATE TABLE vuelo 
-( 
+(
+  id     SERIAL NOT NULL,
   vuelo  NUMERIC(10) NOT NULL, 
-  inicio VARCHAR(50) NOT NULL, 
-  final  VARCHAR(50) NOT NULL
+  inicio INTEGER NOT NULL, 
+  final  INTEGER NOT NULL
 ); 
 
 CREATE TABLE programacion 
 ( 
-  vuelo        NUMERIC(10) NOT NULL, 
-  fecha        timestamp without time zone NOT NULL, 
+  id           SERIAL NOT NULL,
+  id_vuelo     INTEGER NOT NULL, 
+  fecha        TIMESTAMP WITHOUT TIME ZONE NOT NULL, 
   hora_salida  VARCHAR(10) NOT NULL, 
   hora_llegada VARCHAR(10) NOT NULL, 
-  piloto       VARCHAR(20) NOT NULL 
+  id_piloto    INTEGER NOT NULL 
 ); 
 
 CREATE TABLE destino 
 ( 
+  id          SERIAL NOT NULL,
   destino     VARCHAR(50) NOT NULL, 
   descripcion VARCHAR(100) NOT NULL
 ); 
