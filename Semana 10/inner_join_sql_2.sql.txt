@@ -1,0 +1,109 @@
+CREATE TABLE inscriptos 
+  ( 
+     nombre    VARCHAR(30), 
+     documento CHAR(8), 
+     deporte   VARCHAR(15), 
+     matricula CHAR(1), --'s'=paga 'n'=impaga 
+     PRIMARY KEY(documento, deporte) 
+  ); 
+
+CREATE TABLE inasistencias 
+  ( 
+     documento CHAR(8), 
+     deporte   VARCHAR(15), 
+     fecha     DATE 
+  ); 
+
+INSERT INTO inscriptos 
+VALUES     ('Juan Perez', 
+            '22222222', 
+            'tenis', 
+            's'); 
+
+INSERT INTO inscriptos 
+VALUES     ('Maria Lopez', 
+            '23333333', 
+            'tenis', 
+            's'); 
+
+INSERT INTO inscriptos 
+VALUES     ('Agustin Juarez', 
+            '24444444', 
+            'tenis', 
+            'n'); 
+
+INSERT INTO inscriptos 
+VALUES     ('Marta Garcia', 
+            '25555555', 
+            'natacion', 
+            's'); 
+
+INSERT INTO inscriptos 
+VALUES     ('Juan Perez', 
+            '22222222', 
+            'natacion', 
+            's'); 
+
+INSERT INTO inscriptos 
+VALUES     ('Maria Lopez', 
+            '23333333', 
+            'natacion', 
+            'n'); 
+
+INSERT INTO inasistencias 
+VALUES     ('22222222', 
+            'tenis', 
+            '2006-12-01'); 
+
+INSERT INTO inasistencias 
+VALUES     ('22222222', 
+            'tenis', 
+            '2006-12-08'); 
+
+INSERT INTO inasistencias 
+VALUES     ('23333333', 
+            'tenis', 
+            '2006-12-01'); 
+
+INSERT INTO inasistencias 
+VALUES     ('24444444', 
+            'tenis', 
+            '2006-12-08'); 
+
+INSERT INTO inasistencias 
+VALUES     ('22222222', 
+            'natacion', 
+            '2006-12-02'); 
+
+INSERT INTO inasistencias 
+VALUES     ('23333333', 
+            'natacion', 
+            '2006-12-02'); 
+
+SELECT nombre, 
+       insc.deporte, 
+       ina.fecha 
+FROM   inscriptos AS insc 
+       JOIN inasistencias AS ina 
+         ON insc.documento = ina.documento 
+            AND insc.deporte = ina.deporte 
+ORDER  BY nombre, 
+          insc.deporte; 
+
+SELECT nombre, 
+       insc.deporte, 
+       ina.fecha 
+FROM   inscriptos AS insc 
+       JOIN inasistencias AS ina 
+         ON insc.documento = ina.documento 
+            AND insc.deporte = ina.deporte 
+WHERE  insc.documento = '22222222'; 
+
+SELECT nombre, 
+       insc.deporte, 
+       ina.fecha 
+FROM   inscriptos AS insc 
+       JOIN inasistencias AS ina 
+         ON insc.documento = ina.documento 
+            AND insc.deporte = ina.deporte 
+WHERE  insc.matricula = 's'; 

@@ -1,0 +1,135 @@
+﻿DELETE FROM provincias;
+DELETE FROM clientes;
+
+INSERT INTO provincias 
+            (nombre) 
+VALUES     ('Cordoba'); 
+
+INSERT INTO provincias 
+            (nombre) 
+VALUES     ('Santa Fe'); 
+
+INSERT INTO provincias 
+            (nombre) 
+VALUES     ('Corrientes'); 
+
+INSERT INTO clientes 
+            (nombre, 
+             domicilio, 
+             ciudad, 
+             codigoprovincia) 
+VALUES      ('Lopez Marcos', 
+             'Colon 111', 
+             'Córdoba', 
+             1); 
+
+INSERT INTO clientes 
+            (nombre, 
+             domicilio, 
+             ciudad, 
+             codigoprovincia) 
+VALUES      ('Perez Ana', 
+             'San Martin 222', 
+             'Cruz del Eje', 
+             1); 
+
+INSERT INTO clientes 
+            (nombre, 
+             domicilio, 
+             ciudad, 
+             codigoprovincia) 
+VALUES      ('Garcia Juan', 
+             'Rivadavia 333', 
+             'Villa Maria', 
+             1); 
+
+INSERT INTO clientes 
+            (nombre, 
+             domicilio, 
+             ciudad, 
+             codigoprovincia) 
+VALUES      ('Perez Luis', 
+             'Sarmiento 444', 
+             'Rosario', 
+             2); 
+
+INSERT INTO clientes 
+            (nombre, 
+             domicilio, 
+             ciudad, 
+             codigoprovincia) 
+VALUES      ('Gomez Ines', 
+             'San Martin 666', 
+             'Santa Fe', 
+             2); 
+
+INSERT INTO clientes 
+            (nombre, 
+             domicilio, 
+             ciudad, 
+             codigoprovincia) 
+VALUES      ('Torres Fabiola', 
+             'Alem 777', 
+             'La Plata', 
+             4); 
+
+INSERT INTO clientes 
+            (nombre, 
+             domicilio, 
+             ciudad, 
+             codigoprovincia) 
+VALUES      ('Garcia Luis', 
+             'Sucre 475', 
+             'Santa Rosa', 
+             5); 
+
+
+SELECT *
+FROM   clientes;
+
+SELECT *
+FROM   provincias;
+
+SELECT c.nombre, 
+       domicilio, 
+       ciudad, 
+       p.nombre 
+FROM   clientes AS c 
+       LEFT JOIN provincias AS p 
+              ON codigoprovincia = p.codigo; 
+
+SELECT c.nombre, 
+       domicilio, 
+       ciudad, 
+       p.nombre 
+FROM   provincias AS p 
+       LEFT JOIN clientes AS c 
+              ON codigoprovincia = p.codigo; 
+
+SELECT c.nombre, 
+       domicilio, 
+       ciudad, 
+       p.nombre 
+FROM   clientes AS c 
+       LEFT JOIN provincias AS p 
+              ON codigoprovincia = p.codigo 
+WHERE  p.codigo IS NOT NULL; 
+
+SELECT c.nombre, 
+       domicilio, 
+       ciudad, 
+       p.nombre 
+FROM   clientes AS c 
+       LEFT JOIN provincias AS p 
+              ON codigoprovincia = p.codigo 
+WHERE  p.codigo IS NULL 
+ORDER  BY c.nombre; 
+
+SELECT c.nombre, 
+       domicilio, 
+       ciudad, 
+       p.nombre 
+FROM   clientes AS c 
+       LEFT JOIN provincias AS p 
+              ON codigoprovincia = p.codigo 
+WHERE  p.nombre = 'Cordoba'; 

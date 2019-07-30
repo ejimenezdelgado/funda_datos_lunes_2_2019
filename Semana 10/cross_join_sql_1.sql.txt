@@ -1,0 +1,80 @@
+﻿CREATE TABLE mujeres 
+  ( 
+     nombre    VARCHAR(30), 
+     domicilio VARCHAR(30), 
+     edad      INT 
+  ); 
+
+CREATE TABLE varones 
+  ( 
+     nombre    VARCHAR(30), 
+     domicilio VARCHAR(30), 
+     edad      INT 
+  ); 
+
+INSERT INTO mujeres 
+VALUES     ('Maria Lopez', 
+            'Colon 123', 
+            45); 
+
+INSERT INTO mujeres 
+VALUES     ('Liliana Garcia', 
+            'Sucre 456', 
+            35); 
+
+INSERT INTO mujeres 
+VALUES     ('Susana Lopez', 
+            'Avellaneda 98', 
+            41); 
+
+INSERT INTO varones 
+VALUES     ('Juan Torres', 
+            'Sarmiento 755', 
+            44); 
+
+INSERT INTO varones 
+VALUES     ('Marcelo Oliva', 
+            'San Martin 874', 
+            56); 
+
+INSERT INTO varones 
+VALUES     ('Federico Pereyra', 
+            'Colon 234', 
+            38); 
+
+INSERT INTO varones 
+VALUES     ('Juan Garcia', 
+            'Peru 333', 
+            50);
+
+SELECT * 
+FROM  mujeres;
+
+SELECT * 
+FROM  varones;
+
+--SELECT 4*3
+
+SELECT m.nombre, 
+       m.edad, 
+       v.nombre, 
+       v.edad 
+FROM   mujeres AS m 
+       CROSS JOIN varones AS v; 
+
+SELECT m.nombre, 
+       m.edad, 
+       v.nombre, 
+       v.edad 
+FROM   mujeres AS m 
+       CROSS JOIN varones AS v 
+WHERE  m.edad > 40 
+       AND v.edad > 40; 
+
+SELECT m.nombre, 
+       m.edad, 
+       v.nombre, 
+       v.edad 
+FROM   mujeres AS m 
+       CROSS JOIN varones AS v 
+WHERE  m.edad - v.edad BETWEEN -10 AND 10; 
