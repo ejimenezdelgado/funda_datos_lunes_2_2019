@@ -79,10 +79,11 @@ FROM   tipo_servicio
 
 
 -- CONSULTAS 
--- • Crea una vista que devuelva los clientes cuyo apellido incluya la sílaba “le” ordenados por su identificador.
+-- • Crea una vista que devuelva los clientes cuyo apellido 
+incluya la sílaba “le” ordenados por su identificador.
 SELECT   *
 FROM     cliente 
-WHERE    apellido1 LIKE '%le%' 
+WHERE    apellido1 LIKE '%le%' OR apellido2 LIKE '%le%'
 ORDER BY identificacion;
 
 -- • Crea una consulta que devuelva los clientes, ordenados por su primer apellido, que tengan alguna 
@@ -128,9 +129,16 @@ FROM   cliente c JOIN reserva_habitacion rh
 		 JOIN tipo_servicio ts
 		  ON s.id_tipo_servicio=ts.id
 WHERE 	id_tipo_servicio=1
+
+--Cree una consulta que devuelva las características de cada
+-- habitación reservada. 
+SELECT r.id_habitacion,t.categoria,t.camas,t.exterior,t.salon,t.terraza
+FROM tipo_habitacion t JOIN habitacion h ON
+h.id_tipo_habitacion=t.id JOIN reserva_habitacion r ON 
+r.id_habitacion=h.id
 		
 
---•	Cree una consulta que devuelva el
+--Cree una consulta que devuelva el
  --nº de habitaciones por categoría de 
  --habitación.
 
@@ -141,6 +149,13 @@ FROM habitacion h JOIN tipo_habitacion th
 		  ON h.id_tipo_habitacion=
 		      th.id
 GROUP BY th.categoria,camas
+
+-- Cree una consulta que devuelva los precios de los 
+--distintos tipos de habitación por temporada. 
+SELECT t.tipo,p.id_tipo_habitacion,p.precio,
+t.fecha_inicio, t.fecha_final
+FROM precio_habitacion p INNER JOIN 
+temporada t ON p.id_temporada = t.id
 
 
 -- •	Cree una consulta que devuelva los clientes con el mismo 
